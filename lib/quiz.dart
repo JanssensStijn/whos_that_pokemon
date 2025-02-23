@@ -19,14 +19,14 @@ class _MyQuizState extends State<Quiz> with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
-    settings.restart.stream.listen((event) {
+    super.initState();
+    settings.settings.restart.listen((event) {
       setState(() {
         questionNumber = 0;
         score = 0;
         alreadyUsedPokemon.clear();
       });
     });
-    super.initState();
   }
 
   void processAnswer(bool isCorrect) {
@@ -70,8 +70,21 @@ class _MyQuizState extends State<Quiz> with AutomaticKeepAliveClientMixin {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return const CircularProgressIndicator(
-            color: Colors.red,
+          return Scaffold(
+            body: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                        "assets/images/background.jpeg"), // Correct path
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Center(
+            child: const CircularProgressIndicator(
+              color: Colors.red,
+            ),
+          ),
+          ),
           );
         },
       );

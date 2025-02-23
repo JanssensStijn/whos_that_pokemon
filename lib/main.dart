@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whos_that_pokemon/home.dart';
 import 'package:whos_that_pokemon/quiz.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Quiz(),
+      home: Home(),
     );
   }
 }
