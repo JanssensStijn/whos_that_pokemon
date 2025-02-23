@@ -20,6 +20,7 @@ class Question extends StatefulWidget {
 class _QuestionState extends State<Question> {
   String pokemonGuess = '';
   bool isCorrect = false;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,7 @@ class _QuestionState extends State<Question> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
+                    controller: _controller,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       floatingLabelAlignment: FloatingLabelAlignment.center,
@@ -74,7 +76,10 @@ class _QuestionState extends State<Question> {
                 ),
                 AnswerButton(
                     pokemonGuess.toLowerCase() == widget.pokemon['name'],
-                    widget.processAnswer)
+                    (isCorrect) {
+                      widget.processAnswer(isCorrect);
+                      _controller.clear();
+                    })
               ],
             ),
           ),

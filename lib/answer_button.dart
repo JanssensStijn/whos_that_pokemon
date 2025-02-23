@@ -3,7 +3,7 @@ import '../settings.dart' as settings;
 
 class AnswerButton extends StatefulWidget {
   final bool isCorrect;
-  final Function processAnswer;
+  final Function(bool) processAnswer;
 
   const AnswerButton(this.isCorrect, this.processAnswer, {super.key});
 
