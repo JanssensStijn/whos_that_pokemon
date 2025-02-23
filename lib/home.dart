@@ -3,6 +3,8 @@ import 'package:whos_that_pokemon/quiz.dart';
 import 'settings.dart' as settings;
 
 class Home extends StatelessWidget {
+  const Home({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

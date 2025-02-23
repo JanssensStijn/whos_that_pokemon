@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whos_that_pokemon/home.dart';
+import 'package:whos_that_pokemon/quiz.dart';
 import '../settings.dart' as settings;
 
 class Result extends StatelessWidget {
@@ -57,6 +58,10 @@ class Result extends StatelessWidget {
                             ),
                             onPressed: () {
                               settings.Settings().restartQuiz();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Quiz()),
+                              );
                             },
                             child: Text("Try again",
                                 style: theme.textTheme.bodyMedium),
