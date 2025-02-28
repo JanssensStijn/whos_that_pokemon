@@ -31,8 +31,6 @@ class _MyPokemonState extends State<Pokemon>
         parent: pokemonAnimController,
         curve: Interval(0.0, 0.3,
             curve: Curves.linear), // 60% of the time to reach the end color
-        reverseCurve: Interval(0.8, 1.0,
-            curve: Curves.linear), // 20% of the time to return to start color
       ),
     );
 
