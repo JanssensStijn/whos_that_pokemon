@@ -46,12 +46,6 @@ class _MyPokemonState extends State<Pokemon>
       }
     });
 
-    pokemonAnimController.forward().then((_) {
-      Future.delayed(const Duration(seconds: 1), () {
-        pokemonAnimController.reverse();
-      });
-    });
-
     super.initState();
   }
 
