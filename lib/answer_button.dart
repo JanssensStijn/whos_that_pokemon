@@ -21,6 +21,7 @@ class _MyAnswerButtonState extends State<AnswerButton>
   late Animation<Color?> fillColorAnim, borderColorAnim;
   late Animation<double?> fadeAnim;
   late bool enabled = true;
+  late bool visible = true;
 
   @override
   void initState() {
@@ -41,6 +42,7 @@ class _MyAnswerButtonState extends State<AnswerButton>
       if (status == AnimationStatus.completed) {
         widget.processAnswer(widget.isCorrect);
         animController.reset();
+        visible = false;
       }
     });
     super.initState();
@@ -48,6 +50,7 @@ class _MyAnswerButtonState extends State<AnswerButton>
   }
 
   void startAnimation() {
+    enabled = false;
     Color endColor;
     if (widget.isCorrect) {
       endColor = Colors.green;
@@ -63,6 +66,7 @@ class _MyAnswerButtonState extends State<AnswerButton>
 
   enableButton() {
     enabled = true;
+    visible = true;
   }
 
   @override
@@ -71,10 +75,9 @@ class _MyAnswerButtonState extends State<AnswerButton>
     var theme = Theme.of(context);
     return Padding(
         padding: const EdgeInsets.all(settings.margin),
-        child: GestureDetector(
+        child: !visible ? null : GestureDetector(
           onTap: enabled
               ? () {
-                  enabled = false;
                   startAnimation();
                 }
               : null,
