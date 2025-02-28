@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:whos_that_pokemon/answer_button.dart';
+import 'package:whos_that_pokemon/pokemon.dart';
 import 'settings.dart' as settings;
 import 'package:http/http.dart' as http;
 import 'package:whos_that_pokemon/question.dart';
@@ -30,11 +32,16 @@ class _MyQuizState extends State<Quiz> with AutomaticKeepAliveClientMixin {
   }
 
   void processAnswer(bool isCorrect) {
-    if (isCorrect) {
-      score++;
-    }
-    setState(() {
-      questionNumber++;
+    answerButtonKey.currentState?.startAnimation();
+    pokemonKey.currentState?.startAnimation();
+
+    Future.delayed(const Duration(seconds: 3), () {
+      if (isCorrect) {
+        score++;
+      }
+      setState(() {
+        questionNumber++;
+      });
     });
   }
 
@@ -72,19 +79,19 @@ class _MyQuizState extends State<Quiz> with AutomaticKeepAliveClientMixin {
           }
           return Scaffold(
             body: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                        "assets/images/background.jpeg"), // Correct path
-                    fit: BoxFit.cover,
-                  ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      "assets/images/background.jpeg"), // Correct path
+                  fit: BoxFit.cover,
                 ),
-                child: Center(
-            child: const CircularProgressIndicator(
-              color: Colors.red,
+              ),
+              child: Center(
+                child: const CircularProgressIndicator(
+                  color: Colors.red,
+                ),
+              ),
             ),
-          ),
-          ),
           );
         },
       );

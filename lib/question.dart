@@ -55,7 +55,10 @@ class _QuestionState extends State<Question> {
                     ],
                   ),
                   child: Pokemon(
-                      isCorrect, widget.pokemon['sprites']['front_default']),
+                    isCorrect,
+                    widget.pokemon['sprites']['front_default'],
+                    key: pokemonKey,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -75,11 +78,13 @@ class _QuestionState extends State<Question> {
                   ),
                 ),
                 AnswerButton(
-                    pokemonGuess.toLowerCase() == widget.pokemon['name'],
-                    (isCorrect) {
-                      widget.processAnswer(isCorrect);
-                      _controller.clear();
-                    })
+                  pokemonGuess.toLowerCase() == widget.pokemon['name'],
+                  (isCorrect) {
+                    widget.processAnswer(isCorrect);
+                    _controller.clear();
+                  },
+                  key: answerButtonKey,
+                ),
               ],
             ),
           ),

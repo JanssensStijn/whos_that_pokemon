@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../settings.dart' as settings;
 
+// Define a GlobalKey for _MyAnswerButtonState
+final GlobalKey<_MyAnswerButtonState> answerButtonKey = GlobalKey<_MyAnswerButtonState>();
+
 class AnswerButton extends StatefulWidget {
   final bool isCorrect;
   final Function(bool) processAnswer;
@@ -40,6 +43,21 @@ class _MyAnswerButtonState extends State<AnswerButton>
     });
     super.initState();
   }
+  
+
+  void startAnimation() {
+    Color endColor;
+    if (widget.isCorrect) {
+      endColor = Colors.green;
+    } else {
+      endColor = Colors.red;
+    }
+    fillColorAnim = ColorTween(begin: Colors.blue, end: endColor)
+        .animate(animController);
+    borderColorAnim = ColorTween(begin: Colors.blue[100], end: endColor)
+        .animate(animController);
+    animController.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +66,7 @@ class _MyAnswerButtonState extends State<AnswerButton>
     return Padding(
         padding: const EdgeInsets.all(settings.margin),
         child: GestureDetector(
-          onTap: () {
-            Color endColor;
-            if (widget.isCorrect) {
-              endColor = Colors.green;
-            } else {
-              endColor = Colors.red;
-            }
-            fillColorAnim = ColorTween(begin: Colors.blue, end: endColor)
-                .animate(animController);
-            borderColorAnim = ColorTween(begin: Colors.blue[100], end: endColor)
-                .animate(animController);
-            animController.forward();
-          },
+          onTap: startAnimation,
           child: ConstrainedBox(
             constraints: BoxConstraints(
               minHeight: buttonWidth * 0.5,
