@@ -42,6 +42,7 @@ class _MyQuizState extends State<Quiz> with AutomaticKeepAliveClientMixin {
       setState(() {
         questionNumber++;
       });
+      answerButtonKey.currentState?.enableButton();
     });
   }
 
